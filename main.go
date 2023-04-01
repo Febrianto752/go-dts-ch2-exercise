@@ -5,38 +5,22 @@ import (
 	"fmt"
 )
 
-type Employee struct {
-	FullName string `json:"full_name"`
-	Email    string `json:"email"`
-	Age      int    `json:"Age"`
+type User struct {
+	FullName string `json:"Name"`
+	Age      int
 }
 
 func main() {
-	var jsonString = `[
-		{
-			"full_name" : "Febrianto",
-			"email" : "febri@gmail.com",
-			"age": 23
-		},
-		{
-			"full_name" : "leonardo fransisco",
-			"email" : "leo@gmail.com",
-			"age": 24
-		}
-	]
-		
-	`
+	var object = []User{{"john wick", 23}, {"ethan hunt", 32}}
 
-	var employees []Employee
+	var jsonData, err = json.Marshal(object)
 
-	var err = json.Unmarshal([]byte(jsonString), &employees)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 
-	for index, employee := range employees {
-
-		fmt.Printf("index : %v, employee object : %v \n", index, employee)
-	}
+	fmt.Println(jsonData) // output berbentuk byte
+	var jsonString = string(jsonData)
+	fmt.Println(jsonString)
 }
