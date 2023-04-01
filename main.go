@@ -20,13 +20,15 @@ func main() {
 		}
 	`
 
-	var result map[string]interface{}
+	var tmp interface{}
 
-	var err = json.Unmarshal([]byte(jsonString), &result)
+	var err = json.Unmarshal([]byte(jsonString), &tmp)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
+
+	var result = tmp.(map[string]interface{})
 
 	fmt.Println("full_name :", result["full_name"])
 	fmt.Println("email :", result["email"])
