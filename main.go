@@ -20,7 +20,7 @@ func main() {
 		}
 	`
 
-	var result Employee
+	var result map[string]interface{}
 
 	var err = json.Unmarshal([]byte(jsonString), &result)
 	if err != nil {
@@ -28,7 +28,7 @@ func main() {
 		return
 	}
 
-	fmt.Println("full_name :", result.FullName)
-	fmt.Println("email :", result.Email)
-	fmt.Println("age :", result.Age)
+	fmt.Println("full_name :", result["full_name"])
+	fmt.Println("email :", result["email"])
+	fmt.Println("age :", result["age"])
 }
