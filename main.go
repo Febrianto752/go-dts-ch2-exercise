@@ -1,26 +1,26 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
+	"net/url"
 )
 
-type User struct {
-	FullName string `json:"Name"`
-	Age      int
-}
-
 func main() {
-	var object = []User{{"john wick", 23}, {"ethan hunt", 32}}
+	var urlString = "http://developer.com:80/hello?name=febri&age=23"
+	var u, e = url.Parse(urlString)
 
-	var jsonData, err = json.Marshal(object)
-
-	if err != nil {
-		fmt.Println(err.Error())
+	if e != nil {
+		fmt.Println(e.Error())
 		return
 	}
 
-	fmt.Println(jsonData) // output berbentuk byte
-	var jsonString = string(jsonData)
-	fmt.Println(jsonString)
+	fmt.Printf("url : %s \n", urlString)
+
+	fmt.Printf("protocol : %s \n", u.Scheme)
+	fmt.Printf("host : %s \n", u.Host)
+	fmt.Printf("path : %s \n", u.Path)
+
+	var name = u.Query()["name"][0]
+	var age = u.Query()["age"][0]
+	fmt.Printf("name : %s, age : %s \n", name, age)
 }
