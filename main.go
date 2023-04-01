@@ -12,25 +12,31 @@ type Employee struct {
 }
 
 func main() {
-	var jsonString = `
+	var jsonString = `[
 		{
 			"full_name" : "Febrianto",
 			"email" : "febri@gmail.com",
 			"age": 23
+		},
+		{
+			"full_name" : "leonardo fransisco",
+			"email" : "leo@gmail.com",
+			"age": 24
 		}
+	]
+		
 	`
 
-	var tmp interface{}
+	var employees []Employee
 
-	var err = json.Unmarshal([]byte(jsonString), &tmp)
+	var err = json.Unmarshal([]byte(jsonString), &employees)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 
-	var result = tmp.(map[string]interface{})
+	for index, employee := range employees {
 
-	fmt.Println("full_name :", result["full_name"])
-	fmt.Println("email :", result["email"])
-	fmt.Println("age :", result["age"])
+		fmt.Printf("index : %v, employee object : %v \n", index, employee)
+	}
 }
