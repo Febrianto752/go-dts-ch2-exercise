@@ -1,4 +1,4 @@
-module tmp_latihan
+module golang_microservice_exercise
 
 go 1.20
 
