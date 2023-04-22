@@ -16,6 +16,14 @@ type Car struct {
 	Price int    `json:"price"`
 }
 
+// GetAllCars godoc
+// @Sumarry Get Details
+// @Description Get Details of all car
+// @Tags cars
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.Car
+// @Router /orders [get]
 func GetAllCars(c *gin.Context){
 	var db = database.GetDB()
 
@@ -29,6 +37,15 @@ func GetAllCars(c *gin.Context){
 	c.JSON(http.StatusOK, gin.H{"data": cars})
 }
 
+// GetOneCars godoc
+// @Summary Get details for a given Id
+// @Description Get details of car corresponding to the input Id
+// @Tags cars
+// @Accept json
+// @Produce json
+// @Param Id path int true "ID of the car"
+// @Success 200 {object} models.Car
+// @Router /cars/{id} [get]
 func GetOneCars(c *gin.Context){
 	var db = database.GetDB()
 
@@ -44,7 +61,14 @@ func GetOneCars(c *gin.Context){
 	c.JSON(http.StatusOK, gin.H{"data car": car})
 }
 
-
+// CreateCars godoc
+// @Summary Post details for a given Id
+// @Description Post details of car corresponding to the input Id
+// @Tags cars
+// @Accept json
+// @Produce json
+// @Param models.Car body models.Car true "create car"
+// @Router /cars [post]
 func CreateCars(c *gin.Context){
 	var db = database.GetDB()
 
@@ -66,6 +90,15 @@ func CreateCars(c *gin.Context){
 	c.JSON(http.StatusCreated, gin.H{"data": input})
 }
 
+// UpdateCars godoc
+// @Summary Update car identified by the given Id
+// @Description Update the car corresponding to the input id
+// @Tags cars
+// @Accept json
+// @Produce json
+// @Param id path int true "Id of the car to the updated"
+// @Success 200 {object} models.Car
+// @Router /cars/{id} [put]
 func UpdateCars(c *gin.Context){
 	var db = database.GetDB()
 
@@ -95,6 +128,15 @@ func UpdateCars(c *gin.Context){
 	c.JSON(http.StatusOK, gin.H{"message": "successfully updated car"})
 }
 
+// DeleteCars godoc
+// @Summary Delete car identified by the given id
+// @Description Delete the order corresponding to the input id
+// @Tags cars
+// @Accept json
+// @Produce json
+// @Param id path int true "Id of the car to the deleted"
+// @Success 204 "No Content"
+// @Router /cars/{id} [delete]
 func DeleteCars(c *gin.Context){
 	var db = database.GetDB()
 
